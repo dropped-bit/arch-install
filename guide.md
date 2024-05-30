@@ -385,6 +385,11 @@ $ reboot now
 
 ## AFTER INSTALL
 
+## Makes Sense Utils
+```
+pacman -S intel-ucode man-db unzip ufw
+```
+
 ### AUDIO
 ```
 sudo pacman -S sof-firmware pipewire wireplumber pipewire-audio pipewire-alsa pipewire-pulse pipewire-jack
@@ -403,6 +408,8 @@ flatpak install flathub com.github.tchx84.Flatseal
 ```
 sudo pacman -S alacritty neovim npm python eza bat zoxide stow tmux make gcc ripgrep fastfetch btop fzf openssh docker docker-compose python python-devtools lazygit yazi
 ```
+Install TPM for TMUX
+Install YAY for AUR
 
 ### Gnome Stuff
 
@@ -414,3 +421,7 @@ flatpak install flathub com.mattjakeman.ExtensionManager
 pacman -S gnome-tweaks
 ```
 
+### Hyprland
+
+```
+sudo pacman -S hyprland_packages=(hyprland hypridle hyprlock hyprcursor xdg-desktop-portal-hyprland waybar
