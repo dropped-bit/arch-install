@@ -447,6 +447,7 @@ Make sure you install nwg-look + gradience. This will get non-flatpak stuff work
 For flatpak stuff install flatseal via flathub.
 
 Add these rules to the app or globally (file access)
+```
 ~/.config/gtk-3.0/settings.ini
 ~/.config/gtk-4.0/settings.ini
 xdg-config/gtk-3.0
@@ -456,7 +457,10 @@ xdg-config/gtk-4.0
 ~/.local/share/themes:ro
 ~/.local/share/icons:ro
 ~/.local/share/fonts:ro
+```
 
 Also add these environment variables via flatseal
+```
 GTK_THEME=Adwaita-dark:dark
 GTK_FONT_NAME="JetBrainsMono Nerd Font Mono Regular 10"
+```
