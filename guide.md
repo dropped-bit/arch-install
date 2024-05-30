@@ -150,7 +150,7 @@ $ mount /dev/mapper/dropped--arch-home /mnt/home
 With base-devel
 
 ```
-$ pacstrap -K /mnt base base-devel linux linux-firmware git neovim
+$ pacstrap -K /mnt base base-devel linux linux-firmware git neovim lvm2 grub efibootmgr zsh xdg-user-dirs networkmanager intel-ucode
 ```
 
 Load the file table
@@ -167,17 +167,6 @@ $ arch-chroot /mnt /bin/bash
 
 ## Configuring
 
-### Text Editor
-
-Install a text editor
-
-```
-$ pacman -S neovim
-```
-
-```
-$ pacman -S nano
-```
 
 ### Decrypting volumes
 
@@ -193,30 +182,18 @@ add `encrypt` and `lvm2` into the hooks
 HOOKS=(... block encrypt lvm2 filesystems fsck)
 ```
 
-install lvm2
-
-```
-$ pacman -S lvm2
-```
-
 ### Bootloader
-
-Install grub and efibootmgr
-
-```
-$ pacman -S grub efibootmgr
-```
 
 Setup grub on efi partition
 
 ```
-$ grub-install --efi-directory=/boot/efi
+$ grub-install --efi-directory=/boot/efi --target=x86_64-efi --bootloader-id=dropped-arch
 ```
 
 obtain your lvm partition device UUID
 
 ```
-lsblk /dev/nvme0n1p3
+blkid /dev/<NAME>
 ```
 
 Copy this to your clipboard
@@ -259,7 +236,7 @@ Add to partitions
 ```
 $ cryptsetup luksAddKey /dev/nvme0n1p3 /secure/root_keyfile.bin
 # skip below if using single disk
-$ cryptsetup luksAddKey /dev/nvme1n1p1 /secure/home_keyfile.bin
+$ cryptsetup luksAddKey /dev/nvme1n1p1 /secure/home_keyfile.bin # DONT KNOW IF I SHOULD DO THIS
 ```
 
 ```
@@ -269,26 +246,6 @@ $ nvim /etc/mkinitcpio.conf
 ```
 FILES=(/secure/root_keyfile.bin)
 ```
-
-### Home Partition Crypttab (Skip if single disk)
-
-Get uuid of home partition
-
-```
-$ blkid /dev/nvme1n1p1
-```
-
-Open up the crypt table.
-```
-$ nvim /etc/crypttab
-```
-
-Add in the following line at the bottom of the table
-```
-arch-home      UUID=<uuid>    /secure/home_keyfile.bin
-```
-
-Reload linux
 
 ```
 $ mkinitcpio -l linux
@@ -300,7 +257,6 @@ Create grub config
 
 ```
 $ grub-mkconfig -o /boot/grub/grub.cfg
-$ grub-mkconfig -o /boot/efi/EFI/arch/grub.cfg
 ```
 
 ## System Configuration
@@ -308,7 +264,7 @@ $ grub-mkconfig -o /boot/efi/EFI/arch/grub.cfg
 ### Timezone
 
 ```
-ln -sf /usr/share/zoneinfo/America/Chicago /etc/localtime
+ln -sf /usr/share/zoneinfo/Europe/Berlin /etc/localtime
 ```
 
 ### NTP
@@ -354,21 +310,16 @@ $ nvim /etc/locale.conf
 ```
 LANG=en_US.UTF-8
 ```
-
-
 ### hostname
 
-enter it into your /etc/hostname file
+Host name and stuff:
+```
+echo "dropped-arch" >> /etc/hostname
+echo "127.0.0.1 localhost" >> /etc/hosts
+echo "::1       localhost" >> /etc/hosts
+echo "127.0.1.1 arch.localdomain dropped-arch" >> /etc/hosts
+```
 
-```
-$ nvim /etc/hostname
-```
-
-or 
-
-```
-$ echo "mymachine" > /etc/hostname
-```
 
 ### Users
 
@@ -376,12 +327,6 @@ First secure the root user by setting a password
 
 ```
 $ passwd
-```
-
-Then install the shell you want
-
-```
-$ pacman -S zsh
 ```
 
 Add a new user as follows
@@ -409,7 +354,6 @@ $ EDITOR=nvim visudo
 ### Network Connectivity
 
 ```
-$ pacman -S networkmanager
 $ systemctl enable NetworkManager
 ```
 
@@ -424,23 +368,10 @@ $ systemctl enable gdm
 ```
 
 
-### Microcode
-
-For AMD
-
-```
-$ pacman -S amd-ucode
-```
-
-For intel
-
-```
-$ pacman -S intel-ucode
-```
+### Update Grub
 
 ```
 $ grub-mkconfig -o /boot/grub/grub.cfg
-$ grub-mkconfig -o /boot/efi/EFI/arch/grub.cfg
 ```
 
 
