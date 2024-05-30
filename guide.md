@@ -382,3 +382,24 @@ $ exit
 $ umount -R /mnt
 $ reboot now
 ```
+
+## AFTER INSTALL
+
+### AUDIO
+```
+sudo pacman -S sof-firmware pipewire wireplumber pipewire-audio pipewire-alsa pipewire-pulse pipewire-jack
+```
+
+### flatpak
+
+```
+sudo pacman -S flatpak
+flatpak install flathub com.brave.Browser
+flatpak install flathub com.github.tchx84.Flatseal
+```
+
+### dev tools
+
+```
+sudo pacman -S alacritty neovim npm python eza bat zoxide stow tmux make gcc ripgrep fastfetch btop fzf openssh docker docker-compose python python-devtools lazygit yazi
+```
