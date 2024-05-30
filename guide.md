@@ -464,3 +464,10 @@ Also add these environment variables via flatseal
 GTK_THEME=Adwaita-dark:dark
 GTK_FONT_NAME="JetBrainsMono Nerd Font Mono Regular 10"
 ```
+
+Maybe creating a manual setting.ini in the gtk-4.0 folder helped, but I am not sure
+
+```
+[Settings]
+gtk-font-name="JetBrainsMono Nerd Font Mono Regular 10"
+```
