@@ -150,7 +150,7 @@ $ mount /dev/mapper/dropped--arch-home /mnt/home
 With base-devel
 
 ```
-$ pacstrap -K /mnt base base-devel linux linux-firmware git neovim lvm2 grub efibootmgr zsh xdg-user-dirs networkmanager intel-ucode
+$ pacstrap -K /mnt base base-devel linux linux-firmware git neovim lvm2 grub efibootmgr zsh xdg-user-dirs networkmanager intel-ucode openssh
 ```
 
 Load the file table
@@ -187,7 +187,7 @@ HOOKS=(... block encrypt lvm2 filesystems fsck)
 Setup grub on efi partition
 
 ```
-$ grub-install --efi-directory=/boot/efi --target=x86_64-efi --bootloader-id=dropped-arch
+$ grub-install --efi-directory=/boot --target=x86_64-efi --bootloader-id=dropped-arch
 ```
 
 obtain your lvm partition device UUID
@@ -387,7 +387,7 @@ $ reboot now
 
 ## Makes Sense Utils
 ```
-pacman -S intel-ucode man-db unzip ufw
+pacman -S man-db unzip ufw
 ```
 
 ### AUDIO
@@ -424,4 +424,8 @@ pacman -S gnome-tweaks
 ### Hyprland
 
 ```
-sudo pacman -S hyprland_packages=(hyprland hypridle hyprlock hyprcursor xdg-desktop-portal-hyprland waybar
+sudo pacman -S hyprland hypridle hyprlock hyprcursor xdg-desktop-portal-hyprland waybar xdg-desktop-portal
+```
+```
+yay -S swww-git rofi-wayland
+```
