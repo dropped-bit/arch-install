@@ -403,3 +403,14 @@ flatpak install flathub com.github.tchx84.Flatseal
 ```
 sudo pacman -S alacritty neovim npm python eza bat zoxide stow tmux make gcc ripgrep fastfetch btop fzf openssh docker docker-compose python python-devtools lazygit yazi
 ```
+
+### Gnome Stuff
+
+```
+flatpak install flathub com.mattjakeman.ExtensionManager
+```
+
+```
+pacman -S gnome-tweaks
+```
+
