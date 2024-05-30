@@ -395,6 +395,15 @@ pacman -S man-db unzip ufw
 sudo pacman -S sof-firmware pipewire wireplumber pipewire-audio pipewire-alsa pipewire-pulse pipewire-jack
 ```
 
+### Bluetooth
+
+```
+sudo pacman -S bluez bluez-utils blueman
+```
+```
+systemctl enable bluetooth
+```
+
 ### flatpak
 
 ```
@@ -424,8 +433,30 @@ pacman -S gnome-tweaks
 ### Hyprland
 
 ```
-sudo pacman -S hyprland hypridle hyprlock hyprcursor xdg-desktop-portal-hyprland waybar xdg-desktop-portal
+sudo pacman -S hyprland hypridle hyprlock hyprcursor xdg-desktop-portal-hyprland waybar xdg-desktop-portal pamixer brightnessctl polkit-gnome network-manager-applet
 ```
 ```
 yay -S swww-git rofi-wayland
 ```
+
+### Getting Themeing to Work on Hyprland + Flatpaks
+
+Install adwaita via gnome-themes-extras (pacman)
+Make sure any themes, fonts and icons are saved in user space ($HOME/.local/share/...
+Make sure you install nwg-look + gradience. This will get non-flatpak stuff working already
+For flatpak stuff install flatseal via flathub.
+
+Add these rules to the app or globally (file access)
+~/.config/gtk-3.0/settings.ini
+~/.config/gtk-4.0/settings.ini
+xdg-config/gtk-3.0
+xdg-config/gtk-4.0
+~/.config/gtk-3.0
+~/.config/gtk-4.0
+~/.local/share/themes:ro
+~/.local/share/icons:ro
+~/.local/share/fonts:ro
+
+Also add these environment variables via flatseal
+GTK_THEME=Adwaita-dark:dark
+GTK_FONT_NAME="JetBrainsMono Nerd Font Mono Regular 10"
