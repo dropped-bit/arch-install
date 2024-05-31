@@ -471,3 +471,10 @@ Maybe creating a manual setting.ini in the gtk-4.0 folder helped, but I am not s
 [Settings]
 gtk-font-name="JetBrainsMono Nerd Font Mono Regular 10"
 ```
+
+## Thunar
+
+It is helpful to add following packages to add functionality
+```
+sudo pacman -S tumbler ffmpegthumbnailer gvfs thunar-archive-plugin thunar-media-tags-plugin
+```
