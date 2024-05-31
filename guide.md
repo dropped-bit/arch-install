@@ -461,7 +461,7 @@ xdg-config/gtk-4.0
 
 Also add these environment variables via flatseal
 ```
-GTK_THEME=Adwaita-dark:dark
+GTK_THEME=Adwaita-dark:dark # DEFINITELY NEEDED FOR BRAVE!
 GTK_FONT_NAME="JetBrainsMono Nerd Font Mono Regular 10"
 ```
 
