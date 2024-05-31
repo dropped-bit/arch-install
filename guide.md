@@ -433,7 +433,7 @@ pacman -S gnome-tweaks
 ### Hyprland
 
 ```
-sudo pacman -S hyprland hypridle hyprlock hyprcursor xdg-desktop-portal-hyprland waybar xdg-desktop-portal pamixer brightnessctl polkit-gnome network-manager-applet
+sudo pacman -S hyprland hypridle hyprlock hyprcursor xdg-desktop-portal-hyprland waybar xdg-desktop-portal pamixer brightnessctl polkit-gnome network-manager-applet cliphist wl-clipboard grim slurp
 ```
 ```
 yay -S swww-git rofi-wayland
@@ -477,4 +477,20 @@ gtk-font-name="JetBrainsMono Nerd Font Mono Regular 10"
 It is helpful to add following packages to add functionality
 ```
 sudo pacman -S tumbler ffmpegthumbnailer gvfs thunar-archive-plugin thunar-media-tags-plugin
+```
+
+## VMs
+
+```
+sudo pacman -S libvirt qemu-base virt-manager dnsmasq
+```
+
+Create libvirt group and my user to the group:
+```
+sudo usermod -aG libvirt holmes
+```
+Start the daemons:
+```
+sudo systemctl enable libvirtd.service && sudo systemctl enable virtlogd.service
+sudo systemctl start libvirtd.service && sudo systemctl start virtlogd.service
 ```
