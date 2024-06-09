@@ -404,6 +404,15 @@ sudo pacman -S bluez bluez-utils blueman
 systemctl enable bluetooth
 ```
 
+### Battery
+
+```
+sudo yay -S auto-cpufreq
+```
+```
+sudo systemctl enable --now auto-cpufreq 
+```
+
 ### flatpak
 
 ```
