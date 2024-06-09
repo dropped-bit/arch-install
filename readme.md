@@ -386,6 +386,10 @@ $ reboot now
 ## AFTER INSTALL
 
 ## Makes Sense Utils
+
+- Install TPM for TMUX
+- Install YAY for AUR
+
 ```
 pacman -S man-db unzip ufw
 ```
@@ -426,8 +430,7 @@ flatpak install flathub com.github.tchx84.Flatseal
 ```
 sudo pacman -S alacritty neovim npm python eza bat zoxide stow tmux make gcc ripgrep fastfetch btop fzf openssh docker docker-compose python python-devtools lazygit yazi
 ```
-Install TPM for TMUX
-Install YAY for AUR
+
 
 ### Gnome Stuff
 
